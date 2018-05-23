@@ -1,0 +1,27 @@
+---
+# create config dir
+- file:
+    path: /etc/traefik
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+# drop config file
+- template:
+    dest: /etc/traefik/config.toml
+    src: templates/traefik.config.toml.j2
+    owner: root
+    group: root
+    mode: 0644
+
+# drop docker-compose.yml file
+- template:
+    dest: /etc/traefik/docker-compose.yml
+    src: templates/docker-compose.yml.j2
+    owner: root
+    group: root
+    mode: 0644
+
+# launch docker stack
+- shell: docker stack deploy -c /etc/traefik/docker-compose.yml {{ traefik_stack_name }}

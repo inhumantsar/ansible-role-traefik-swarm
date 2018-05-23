@@ -1,0 +1,21 @@
+version: "3.3"
+
+services:
+    traefik:
+        image: traefik:{{ traefik_version }}
+        ports:
+            - 80:80
+            - {{ traefik_webui_port }}:8080
+        {{ (traefik_networks | to_nice_yaml) if traefik_networks != None else '' }}
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock
+        configs:
+            - traefik_config
+        deploy:
+            placement:
+                constraints:
+                    - node.role == manager
+
+configs:
+    traefik_config:
+        file: /etc/traefik/config.toml

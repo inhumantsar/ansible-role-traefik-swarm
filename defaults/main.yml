@@ -1,0 +1,11 @@
+---
+traefik_loglevel: DEBUG
+traefik_debug: true
+traefik_webui_port: 8080
+traefik_networks: ~
+### example #############
+#   networks:
+#     - customnet1
+#     - customnet2
+traefik_version: latest
+traefik_stack_name: traefik
