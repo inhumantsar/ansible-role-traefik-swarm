@@ -27,6 +27,9 @@ install:
   # Create ansible.cfg with correct roles_path
   - printf '[defaults]\nroles_path=../' > ansible.cfg
 
+  # set up docker swarm
+  - docker swarm init
+
 script:
   - ansible-playbook test.yml --syntax-check
   - ansible-playbook test.yml -vvv -c local -b
