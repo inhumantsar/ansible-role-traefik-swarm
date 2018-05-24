@@ -18,7 +18,7 @@ addons:
 
 install:
   - pip install ansible
-  - if [ -f 'requirements.yml' ]; then yum -y install git && ansible-galaxy install -r requirements.yml; fi
+  - if [ -f 'requirements.yml' ]; then apt -y install git && ansible-galaxy install -r requirements.yml; fi
 
   # version checks
   - docker --version
