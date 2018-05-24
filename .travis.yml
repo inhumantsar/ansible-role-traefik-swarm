@@ -1,7 +1,10 @@
 language: python
 python: "2.7"
 
+dist: trusty
 sudo: required
+services:
+  - docker
 
 branches:
   only:
@@ -15,8 +18,10 @@ addons:
 
 install:
   - pip install ansible
+  - if [ -f 'requirements.yml' ]; then yum -y install git && ansible-galaxy install -r requirements.yml; fi
 
   # version checks
+  - docker --version
   - ansible --version
 
   # Create ansible.cfg with correct roles_path
@@ -24,8 +29,7 @@ install:
 
 script:
   - ansible-playbook test.yml --syntax-check
-  - ansible-playbook test.yml -vvv -c local -b -i 'localhost,'
-  # - ./test/checks.sh # tasks have their own asserts, but this is an option too
+  - ansible-playbook test.yml -vvv -c local -b
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
