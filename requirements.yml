@@ -1,8 +1,0 @@
-# # from github, overriding the name and specifying a specific tag
-# - src: https://github.com/bennojoy/nginx
-#   version: master
-#   name: nginx_role
-#
-# # from a webserver, where the role is packaged in a tar.gz
-# - src: https://some.webserver.example.com/files/master.tar.gz
-#   name: http_role
