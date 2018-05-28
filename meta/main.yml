@@ -40,8 +40,9 @@ galaxy_info:
         - bionic
         - artful
         - zesty
-        - yakkity
+        - yakkety
         - xenial
+        - wily
 
   galaxy_tags: 
     - traefik
